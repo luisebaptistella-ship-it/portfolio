@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luise Baptistella — Creative Director &amp; Designer</title>
+  <meta name="description" content="Portfolio of Luise Baptistella, creative director & designer: brand identity, art direction, motion design and social content.">
+  <meta name="theme-color" content="#120F0D">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Switzer Black: free Helvetica-style grotesk (Fontshare, free for commercial use) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@900,901&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav">
+    <a class="nav__logo" href="#top">Luise Baptistella</a>
+    <span class="nav__title" data-i18n="nav.portfolio">Portfolio</span>
+    <div class="nav__right">
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links"><span data-i18n="nav.menu">Menu</span> <span class="nav__burger" aria-hidden="true"></span></button>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="#skills" data-i18n="nav.skills">Skills</a>
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <span class="nav__lang" role="group" aria-label="Language / Langue / Idioma">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="fr" aria-pressed="false">FR</button><span aria-hidden="true">/</span><button type="button" data-lang="pt" aria-pressed="false">PT</button>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ OPENING: 16:9 light that follows the cursor (opening.js) ============ -->
+    <section class="opening" id="top">
+      <canvas class="opening__light" aria-hidden="true"></canvas>
+      <h1 class="opening__title" data-i18n-aria="hero.h1" aria-label="Luise Baptistella — Creative Director &amp; Designer"><span>Luise</span><span>Baptistella</span></h1>
+    </section>
+
+    <!-- ============ SKILLS (hover → project) ============ -->
+    <section class="skills" id="skills" aria-labelledby="skills-title">
+      <div class="section-head">
+        <h2 id="skills-title"><span data-i18n="skills.title">What I do</span></h2>
+      </div>
+      <ol class="skills__list">
+        <li><a class="skill" href="skill.html?s=brand-identity"><span class="skill__num">01</span><span class="skill__name" data-i18n="skill.brand">Brand Identity</span><span class="skill__proj">Bubble Brew · Livia Zeffa</span></a></li>
+        <li><a class="skill" href="skill.html?s=art-direction"><span class="skill__num">02</span><span class="skill__name" data-i18n="skill.direction">Art Direction</span><span class="skill__proj">Low Key · Mouv’ Festival</span></a></li>
+        <li><a class="skill" href="skill.html?s=motion-design"><span class="skill__num">03</span><span class="skill__name" data-i18n="skill.motion">Motion Design</span><span class="skill__proj">Motion Design · 366 · Bloom n’Root</span></a></li>
+        <li><a class="skill" href="skill.html?s=social-content"><span class="skill__num">04</span><span class="skill__name" data-i18n="skill.social">Social Content</span><span class="skill__proj">Mondial Relay · Innocent · Vertbaudet · Livia Zeffa · Mouv’ Festival · La Maison des femmes</span></a></li>
+      </ol>
+    </section>
+
+    <!-- ============ SELECTED WORK ============ -->
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <h2 id="work-title"><span data-i18n="work.title">Selected work</span></h2>
+      </div>
+      <div class="work__grid" data-work-grid></div>
+    </section>
+
+
+    <!-- ============ WORKED WITH (logo carousel) ============ -->
+    <section class="clients" id="clients" aria-label="Companies I’ve worked with" data-i18n-aria="clients.aria">
+      <div class="clients__tab" data-i18n="clients.tab">Worked with</div>
+      <div class="marquee" data-marquee="follow">
+        <ul class="marquee__track">
+          <li class="logo" style="--s:1.9"><img src="assets/logos/gangsteres.webp" alt="Gangstères" width="2000" height="925"></li>
+          <li class="logo" style="--s:1.15"><img src="assets/logos/366.svg" alt="366" width="146" height="119"></li>
+          <li class="logo" style="--s:1.5"><img src="assets/logos/maison-des-femmes.png" alt="La Maison des femmes Marseille Provence" width="777" height="671"></li>
+          <li class="logo" style="--s:1.75"><img src="assets/logos/canceropole.webp" alt="Canceropôle" width="2000" height="707"></li>
+          <li class="logo" style="--s:1.45"><img src="assets/logos/thelonius-mind.png" alt="Thelonius Mind" width="1890" height="828"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ NO BRIEF: personal posters, revealed by the cursor ============ -->
+    <section class="nobrief" id="no-brief" aria-labelledby="nobrief-title" data-trail>
+      <div class="nobrief__stage" aria-hidden="true"></div>
+      <div class="nobrief__text">
+        <h2 class="nobrief__title" id="nobrief-title" data-i18n-html="nobrief.title">no brief.<br>just because.</h2>
+      </div>
+      <ul class="nobrief__list sr-only">
+          <li><img src="assets/posters/acid-house.jpg" alt="Techno Saison poster, acid house edition" loading="lazy"></li>
+          <li><img src="assets/posters/minimalist.jpg" alt="I love quiabo, minimalist poster" loading="lazy"></li>
+          <li><img src="assets/posters/kidcore.jpg" alt="Excited for everything, kidcore poster" loading="lazy"></li>
+          <li><img src="assets/posters/rita.jpg" alt="Rita Lee poster" loading="lazy"></li>
+          <li><img src="assets/posters/tomates.jpg" alt="Tomato pattern" loading="lazy"></li>
+          <li><img src="assets/posters/scifi-70.jpg" alt="70s sci-fi poster" loading="lazy"></li>
+          <li><img src="assets/posters/aysha.jpg" alt="A Rara, event invitation" loading="lazy"></li>
+          <li><img src="assets/posters/menino.jpg" alt="Illustration of a boy" loading="lazy"></li>
+          <li><img src="assets/posters/rita-lee.jpg" alt="Low key, Rita Lee cover" loading="lazy"></li>
+          <li><img src="assets/posters/triste.jpg" alt="Typographic poster" loading="lazy"></li>
+          <li><img src="assets/posters/acid-house-2.jpg" alt="Techno Saison poster, green edition" loading="lazy"></li>
+      </ul>
+    </section>
+
+    <!-- ============ ABOUT, short: the portrait video and education only (the full version is about.html) ============ -->
+    <section class="about about--home" id="about" aria-labelledby="about-title">
+      <div class="about__main">
+        <div class="about__text">
+          <h2 class="about__title" id="about-title" data-i18n="about.title">About</h2>
+          <div class="about__edu">
+            <h3 data-i18n="about.edu">Education</h3>
+            <ul>
+              <li><span><span data-i18n="edu.master">MA Art Direction &amp; Graphic Design</span> — Sup de Pub</span><span>2026–28</span></li>
+              <li><span><span data-i18n="edu.bachelor">Bachelor, Creative Communication</span> — ECS Paris</span><span>2025–26</span></li>
+              <li><span>BTS Communication — IFC Marseille</span><span>2023–25</span></li>
+              <li><span><span data-i18n="edu.licence">BA Architecture &amp; Urbanism</span> — UNICAMP, São Paulo</span><span>2020–22</span></li>
+            </ul>
+          </div>
+          <a class="pill pill--paper" href="about.html"><span data-i18n="about.more">See more</span> →</a>
+        </div>
+        <figure class="about__media">
+          <video class="about__video" src="assets/about.mp4" poster="assets/about.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Luise Baptistella"></video>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="section-head">
+        <h2 id="contact-title"><span data-i18n="contact.title">Contact</span></h2>
+      </div>
+      <div class="contact__cta">
+        <a class="contact__card" href="contact.html" data-i18n="contact.cta">wanna talk more?</a>
+        <a class="contact__mail" href="mailto:luisebaptistella@gmail.com">luisebaptistella@gmail.com</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__social" aria-label="Social">
+      <a href="https://www.instagram.com/coloredbylou/">Instagram</a>
+      <a href="https://www.linkedin.com/in/luisebaptistella/">LinkedIn</a>
+      <a href="https://www.behance.net/luisebaptist">Behance</a>
+    </nav>
+    <span>© 2026 Luise Baptistella</span>
+    <a href="#top" data-i18n="footer.top">Back to top ↑</a>
+  </footer>
+
+  <!-- Project cards shown by the skills list (one per skill, same order) -->
+  <div class="preview" aria-hidden="true">
+    <div class="preview__card"><img class="preview__media" src="assets/projects/bubble-brew/cover.jpg" alt="" loading="lazy"><span class="preview__cap">Bubble Brew</span></div>
+    <div class="preview__card"><img class="preview__media" src="assets/projects/low-key/thumb.jpg" alt="" loading="lazy"><span class="preview__cap">Low Key</span></div>
+    <div class="preview__card"><video class="preview__media" src="assets/projects/motion-2026/loop.mp4" poster="assets/projects/motion-2026/cover.jpg" muted loop playsinline preload="none"></video><span class="preview__cap">Motion Design</span></div>
+    <div class="preview__card"><img class="preview__media" src="assets/projects/livia-zeffa/thumb.jpg" alt="" loading="lazy"><span class="preview__cap">Livia Zeffa</span></div>  </div>
+
+  <!-- Project view, filled from projects.js -->
+  <dialog class="project" id="project" aria-labelledby="project-title">
+    <div class="project__bar">
+      <span class="project__count"></span>
+      <button class="project__close" type="button" data-i18n="project.close">Close ✕</button>
+    </div>
+    <div class="project__hero" hidden></div>
+    <article class="project__body">
+      <h2 class="project__title" id="project-title"></h2>
+      <dl class="project__meta">
+        <div><dt data-i18n="project.client">Client</dt><dd data-field="client"></dd></div>
+        <div><dt data-i18n="project.year">Year</dt><dd data-field="year"></dd></div>
+        <div><dt data-i18n="project.category">Category</dt><dd data-field="category"></dd></div>
+      </dl>
+      <div class="project__text"></div>
+      <div class="project__deliv">
+        <h3 data-i18n="project.deliverables">Deliverables</h3>
+        <ul></ul>
+      </div>
+      <div class="project__media"></div>
+      <button class="project__next" type="button"><span data-i18n="project.next">Next project</span> <strong></strong> →</button>
+    </article>
+  </dialog>
+
+  <script src="i18n.js"></script>
+  <script src="projects.js"></script>
+  <script src="script.js"></script>
+  <script src="opening.js"></script>
+</body>
+</html>

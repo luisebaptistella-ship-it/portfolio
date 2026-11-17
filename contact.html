@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact — Luise Baptistella</title>
+  <meta name="description" content="Portfolio of Luise Baptistella, creative director & designer: brand identity, art direction, motion design and social content.">
+  <meta name="theme-color" content="#120F0D">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Switzer Black: free Helvetica-style grotesk (Fontshare, free for commercial use) -->
+  <link href="https://api.fontshare.com/v2/css?f[]=switzer@900,901&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="page" data-title-key="meta.title.contact">
+  <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+  <!-- ============ HEADER ============ -->
+  <header class="nav is-solid" id="top">
+    <a class="nav__logo" href="index.html">Luise Baptistella</a>
+    <span class="nav__title" data-i18n="nav.portfolio">Portfolio</span>
+    <div class="nav__right">
+      <button class="nav__menu" type="button" aria-expanded="false" aria-controls="nav-links"><span data-i18n="nav.menu">Menu</span> <span class="nav__burger" aria-hidden="true"></span></button>
+      <nav class="nav__links" id="nav-links" aria-label="Main">
+        <a href="index.html#skills" data-i18n="nav.skills">Skills</a>
+        <a href="index.html#work" data-i18n="nav.work">Work</a>
+        <a href="about.html" data-i18n="nav.about">About</a>
+        <span class="nav__lang" role="group" aria-label="Language / Langue / Idioma">
+          <button type="button" data-lang="en" aria-pressed="true">EN</button><span aria-hidden="true">/</span><button type="button" data-lang="fr" aria-pressed="false">FR</button><span aria-hidden="true">/</span><button type="button" data-lang="pt" aria-pressed="false">PT</button>
+        </span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ CONTACT PAGE ============ -->
+    <section class="contactpage" aria-labelledby="contact-title">
+      <div class="contactpage__head">
+        <h1 class="contactpage__title" id="contact-title" data-i18n="contact.title">Contact</h1>
+        <a class="contact__mail" href="mailto:luisebaptistella@gmail.com">luisebaptistella@gmail.com</a>
+      </div>
+
+      <div class="contactpage__body">
+        <!-- Messages go through FormSubmit to the address in action. The first one sent from a new site address
+             triggers an activation email: click its link once. _honey is a spam trap, hidden from people. -->
+        <form class="form" action="https://formsubmit.co/luisebaptistella@gmail.com" method="POST" data-contact-form>
+          <input type="hidden" name="_subject" value="New message from your portfolio">
+          <input type="hidden" name="_template" value="table">
+          <input type="text" name="_honey" style="display: none;" tabindex="-1" autocomplete="off">
+
+          <div class="field">
+            <label for="form-name" data-i18n="form.name">Name</label>
+            <input id="form-name" name="name" type="text" autocomplete="name" required aria-describedby="form-name-error">
+            <p class="field__error" id="form-name-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="form-email" data-i18n="form.email">Email</label>
+            <input id="form-email" name="email" type="email" autocomplete="email" required aria-describedby="form-email-error">
+            <p class="field__error" id="form-email-error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="form-phone"><span data-i18n="form.phone">Telephone</span> <em data-i18n="form.optional">optional</em></label>
+            <input id="form-phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="form-company"><span data-i18n="form.company">Company name</span> <em data-i18n="form.optional">optional</em></label>
+            <input id="form-company" name="company" type="text" autocomplete="organization">
+          </div>
+          <div class="field field--wide">
+            <label for="form-message" data-i18n="form.message">Tell me about your project</label>
+            <p class="field__hint" id="form-message-hint" data-i18n="form.messageHint">Your message and what you need.</p>
+            <textarea id="form-message" name="message" rows="7" required aria-describedby="form-message-hint form-message-error"></textarea>
+            <p class="field__error" id="form-message-error" hidden></p>
+          </div>
+
+          <p class="form__failed" data-form-failed role="alert" hidden>
+            <span data-i18n="form.failed">That didn’t go through. Try again, or write to me directly:</span>
+            <a class="contact__mail" href="mailto:luisebaptistella@gmail.com">luisebaptistella@gmail.com</a>
+          </p>
+          <button class="form__send" type="submit" data-i18n="form.send">let’s go</button>
+        </form>
+
+        <div class="form__done" data-form-done tabindex="-1" hidden>
+          <p class="form__doneTitle" data-i18n="form.sentTitle">Message sent.</p>
+          <p class="form__doneText" data-i18n="form.sent">I’ll get back to you soon.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <nav class="footer__social" aria-label="Social">
+      <a href="https://www.instagram.com/coloredbylou/">Instagram</a>
+      <a href="https://www.linkedin.com/in/luisebaptistella/">LinkedIn</a>
+      <a href="https://www.behance.net/luisebaptist">Behance</a>
+    </nav>
+    <span>© 2026 Luise Baptistella</span>
+    <a href="#top" data-i18n="footer.top">Back to top ↑</a>
+  </footer>
+
+  <script src="i18n.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
