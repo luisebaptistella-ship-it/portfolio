@@ -1000,7 +1000,21 @@ html.has-dialog { overflow: hidden; }
 
   .reel__bottom { flex-direction: column; align-items: flex-start; }
 
-  .skill { grid-template-columns: 26px 1fr; gap: 8px; font-size: clamp(2rem, 11vw, 3.4rem); }
+  /* The opening is taller on phones, so the light has room (opening.js adapts to any frame shape) */
+  .opening { aspect-ratio: 4 / 5; }
+
+  /* Each skill on one line, all four the same size: the size is the smaller of the old one and the
+     one that fits the language's longest name, plus the .12em nudge of the active line, beside the
+     number. --fit = that name's width in em, measured in WebKit (+.18em of room). */
+  .skill {
+    --fit: 6.56;                                    /* Social Content */
+    grid-template-columns: 26px 1fr;
+    gap: 8px;
+    font-size: min(clamp(2rem, 11vw, 3.4rem), calc((100vw - 2 * var(--pad) - 34px) / var(--fit)));
+  }
+  :lang(fr) .skill { --fit: 8.6; }                  /* Direction artistique */
+  :lang(pt) .skill { --fit: 9.13; }                 /* Identidade de marca */
+  .skill__name { white-space: nowrap; }
   .skill__proj { display: none; }
 
   .work__grid {
@@ -1015,6 +1029,10 @@ html.has-dialog { overflow: hidden; }
 
   .about__main { grid-template-columns: 1fr; }
   .about__title { margin-bottom: .2em; }
+  /* In one column, WebKit (Safari) shrinks the stretched 4:5 frame to nothing, since its only child is
+     positioned: the video vanished on phones. Here the video sits in the flow and sets the height. */
+  .about__media { aspect-ratio: auto; align-self: start; }
+  .about__video { position: static; display: block; height: auto; aspect-ratio: 4 / 5; }
 
   .sproject { grid-template-columns: 1fr; }
   .sproject:nth-child(even) .sproject__media { order: 0; }
