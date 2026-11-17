@@ -234,8 +234,16 @@ body:has(.opening) .nav:not(.is-past-opening):not(.is-open) .nav__title { opacit
   white-space: nowrap;
   pointer-events: none;
 }
-.opening__title span { transform: translateX(-.0497em); }
-.opening__title span:first-of-type { transform: translateX(-.032em); }
+.opening__title > span { transform: translateX(-.0497em); }
+.opening__title > span:first-of-type { transform: translateX(-.032em); }
+/* PORTFOLIO above the name, in Helvetica (the user's choice for this one word): centred on desktop,
+   on the left on phones */
+.opening__sub {
+  margin-bottom: .45em;
+  font: italic 300 max(15px, 2.2vw)/1 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -.02em;
+  text-transform: uppercase;
+}
 
 /* Full-screen showreel, edge to edge. Not on the page for now: the opening took its place */
 .hero { height: 100vh; height: 100svh; }
@@ -1000,20 +1008,18 @@ html.has-dialog { overflow: hidden; }
 
   .reel__bottom { flex-direction: column; align-items: flex-start; }
 
-  /* Phones: the opening fills the screen and the name sits in its middle, both lines centred.
-     opening.js reads where the title is and aims a soft triangle of light down onto it, fading out
-     below, so the black letters always have light behind them. */
-  .opening {
-    aspect-ratio: auto;
-    height: 100vh;
-    height: 100svh;
-    /* still frame if WebGL is missing: the same soft triangle, apex high, widening onto the name */
-    background:
-      linear-gradient(to bottom, transparent 56%, var(--ink) 86%),
-      conic-gradient(from 180deg at 50% 16%, #c9472b 0 20deg, transparent 44deg 316deg, #c9472b 340deg),
-      var(--ink);
-  }
-  .opening__title { top: 50%; bottom: auto; translate: 0 -50%; }
+  /* Phones (the user's mockup): the opening takes 82% of the screen, so the red line where "What I do"
+     starts shows below it; the light is the desktop one. PORTFOLIO, then LUISE and BAPTIS on the left
+     margin, TELLA on the right edge, standing on the bottom of the light. Measured bearings: L and B
+     start .05em into their boxes, TELLA's A sticks out .05em on the right. */
+  .opening { aspect-ratio: auto; height: 82vh; height: 82svh; }
+  .opening__title { align-items: stretch; padding-left: var(--pad); font-size: 22cqw; line-height: .82; }
+  .opening__title > span, .opening__title > span:first-of-type { transform: translateX(-.05em); }
+  .opening__title > span.opening__last { display: flex; flex-direction: column; transform: none; }
+  .opening__last > span:first-child { transform: translateX(-.05em); }
+  .opening__last > span:last-child { align-self: flex-end; transform: translateX(-.05em); }
+  .opening__sub { align-self: flex-start; margin-bottom: .62em; font-size: 5cqw; }
+  .skills { padding-top: 20px; }
 
   /* Each skill on one line, all four the same size: the size is the smaller of the old one and the
      one that fits the language's longest name, plus the .12em nudge of the active line, beside the

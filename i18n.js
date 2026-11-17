@@ -15,6 +15,7 @@ window.I18N = {
     'nav.portfolio': 'Portfolio',
 
     'hero.h1': 'Luise Baptistella — Creative Director & Designer',
+    'opening.sub': 'Portfolio',
     'reel.sub': 'Creative Director & Designer — 2026',
     'reel.play': 'Play reel',
     'reel.mute': 'Sound off',
@@ -94,6 +95,7 @@ window.I18N = {
     'nav.portfolio': 'Portfolio',
 
     'hero.h1': 'Luise Baptistella — Directrice créative & designer',
+    'opening.sub': 'Portfolio',
     'reel.sub': 'Directrice créative & designer — 2026',
     'reel.play': 'Voir le reel',
     'reel.mute': 'Couper le son',
@@ -173,6 +175,7 @@ window.I18N = {
     'nav.portfolio': 'Portfólio',
 
     'hero.h1': 'Luise Baptistella — Diretora criativa & designer',
+    'opening.sub': 'Portfólio',
     'reel.sub': 'Diretora criativa & designer — 2026',
     'reel.play': 'Ver o reel',
     'reel.mute': 'Desligar o som',

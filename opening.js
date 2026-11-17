@@ -13,7 +13,6 @@
   if (!gl) return;   // the CSS background stays as a still frame
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const phone = matchMedia('(max-width: 760px)');   // same breakpoint as the phone CSS: triangle light
 
   // Two ramps from unlit to fully lit: the dark end is the page's black, and the bright end
   // comes from the reference by brightness: its least saturated colours (to amber) and its most (to vermilion).
@@ -40,7 +39,7 @@ precision highp float;
 in vec2 uv;
 out vec4 frag;
 uniform sampler2D uLast, uStrand;
-uniform float uTime, uDt, uAspect, uIntro, uCharge, uSpeed, uCool, uPhone, uTitleTop, uTitleBot;
+uniform float uTime, uDt, uAspect, uIntro, uCharge, uSpeed, uCool;
 uniform vec2 uMouse, uMouseFrom, uMouseVel;
 
 float hash(vec2 p) {
@@ -101,28 +100,18 @@ void main() {
   // LUISE, low at the ends of BAPTISTELLA, and swelling and brightening around the band, so
   // the field answers the cursor. Above it stays black.
   float side = (p.x - .5) * 2.;
-  float dome = .45 + .27 * side * side + (n1 - .5) * .24 + (n2 - .5) * .08 - .16 * exp(-d * d / .05);
-  // On phones (uPhone = 1) the name sits mid-screen and the light is a soft triangle aimed down onto
-  // it: apex well above the title, sides reaching BAPTISTELLA's line at the edges (uTitleTop/Bot = the
-  // title's top and bottom, 0 at the top of the stage). Its top and sides fade over a long distance,
-  // it fades out again below the name, and it is a little lighter than the desktop mound
-  float mid = (uTitleTop + uTitleBot) * .5;
-  float tri = mid - .3 + .26 * abs(side) + (n1 - .5) * .05 - .04 * exp(-d * d / .03);
-  float moundTop = mix(dome, tri, uPhone);
-  float glow = smoothstep(moundTop - mix(.2, .14, uPhone), moundTop + mix(.03, .06, uPhone), p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
-  float under = 1. - uPhone * smoothstep(uTitleBot - .02, uTitleBot + .32, p.y);
-  glow *= mix(1., .82, uPhone) * under;
-  float spill = 1. - .8 * uPhone;          // on phones the other reds stay inside the triangle
+  float moundTop = .45 + .27 * side * side + (n1 - .5) * .24 + (n2 - .5) * .08 - .16 * exp(-d * d / .05);
+  float glow = smoothstep(moundTop - .2, moundTop + .03, p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
 
   float h = .05;                          // black
-  h = screen(h, .3 * mauve * spill);
-  h = screen(h, .24 * wine * spill);
-  h = screen(h, .4 * arc * spill);
-  h = screen(h, .66 * bed * spill * under);
-  h = screen(h, .72 * body * mix(1., .45, uPhone) * under);
-  h = screen(h, .55 * streak * mix(1., 0., uPhone));   // the pale streak along the bottom: not on phones
+  h = screen(h, .3 * mauve);
+  h = screen(h, .24 * wine);
+  h = screen(h, .4 * arc);
+  h = screen(h, .66 * bed);
+  h = screen(h, .72 * body);
+  h = screen(h, .55 * streak);
   h = screen(h, .84 * glow);
-  h = screen(h, mix(.8, .95, low) * ridge * mix(1., .25 + .75 * under, uPhone));   // phones: the band dims below the name
+  h = screen(h, mix(.8, .95, low) * ridge);
   h *= mix(.4, 1., smoothstep(0., .24, p.y));    // keeps the header readable
 
   // Vivid in the lower half; the ridge and streak stay amber wherever they go
@@ -216,8 +205,6 @@ void main() {
      --------------------------------------------------------- */
   let lightProg, meshProg, strandTex, paletteTex, fields = [];
   let floatOK = false, cols = 0, rows = 0, cellW = 0, cellH = 0, needsFit = true;
-  const title = stage.querySelector('.opening__title');
-  let titleTop = .8, titleBot = 1;
 
   const program = (fragSrc) => {
     const compile = (type, src) => {
@@ -280,10 +267,6 @@ void main() {
     cellH = Math.round(cellW * 1.39);   // the reference's cell shape
     cols = Math.ceil(canvas.width / cellW);
     rows = Math.ceil(canvas.height / cellH);
-    // where the title sits in the stage (phones aim their light at it)
-    const t = title ? title.getBoundingClientRect() : null;
-    titleTop = t ? (t.top - r.top) / r.height : .8;
-    titleBot = t ? (t.bottom - r.top) / r.height : 1;
     fields.forEach((f) => { gl.deleteTexture(f.tex); gl.deleteFramebuffer(f.fbo); });
     fields = [0, 1].map(() => {
       const tex = texture(gl.LINEAR);
@@ -349,9 +332,6 @@ void main() {
     gl.uniform1f(u.uCharge, charge);
     gl.uniform1f(u.uSpeed, m.speed);
     gl.uniform1f(u.uCool, floatOK ? .55 : .15);   // 8-bit buffers can't hold a slow fade
-    gl.uniform1f(u.uPhone, phone.matches ? 1 : 0);
-    gl.uniform1f(u.uTitleTop, titleTop);
-    gl.uniform1f(u.uTitleBot, titleBot);
     gl.uniform2f(u.uMouse, m.x, m.y);
     gl.uniform2f(u.uMouseFrom, m.fromX, m.fromY);
     gl.uniform2f(u.uMouseVel, m.vx, m.vy);
