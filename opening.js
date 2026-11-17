@@ -13,6 +13,7 @@
   if (!gl) return;   // the CSS background stays as a still frame
 
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const phone = matchMedia('(max-width: 760px)');   // same breakpoint as the phone CSS: triangle light
 
   // Two ramps from unlit to fully lit: the dark end is the page's black, and the bright end
   // comes from the reference by brightness: its least saturated colours (to amber) and its most (to vermilion).
@@ -39,7 +40,7 @@ precision highp float;
 in vec2 uv;
 out vec4 frag;
 uniform sampler2D uLast, uStrand;
-uniform float uTime, uDt, uAspect, uIntro, uCharge, uSpeed, uCool;
+uniform float uTime, uDt, uAspect, uIntro, uCharge, uSpeed, uCool, uPhone;
 uniform vec2 uMouse, uMouseFrom, uMouseVel;
 
 float hash(vec2 p) {
@@ -100,15 +101,20 @@ void main() {
   // LUISE, low at the ends of BAPTISTELLA, and swelling and brightening around the band, so
   // the field answers the cursor. Above it stays black.
   float side = (p.x - .5) * 2.;
-  float moundTop = .45 + .27 * side * side + (n1 - .5) * .24 + (n2 - .5) * .08 - .16 * exp(-d * d / .05);
-  float glow = smoothstep(moundTop - .2, moundTop + .03, p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
+  float dome = .45 + .27 * side * side + (n1 - .5) * .24 + (n2 - .5) * .08 - .16 * exp(-d * d / .05);
+  // On phones (uPhone = 1) the light is a narrower triangle instead: high in the middle, its sides
+  // running straight down to LUISE's cap height at the edges, so the black letters still read
+  float tri = .5 + .3 * abs(side) + (n1 - .5) * .05 - .07 * exp(-d * d / .03);
+  float moundTop = mix(dome, tri, uPhone);
+  float glow = smoothstep(moundTop - mix(.2, .06, uPhone), moundTop + .03, p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
+  float spill = 1. - .8 * uPhone;          // on phones the other reds stay inside the triangle
 
   float h = .05;                          // black
-  h = screen(h, .3 * mauve);
-  h = screen(h, .24 * wine);
-  h = screen(h, .4 * arc);
-  h = screen(h, .66 * bed);
-  h = screen(h, .72 * body);
+  h = screen(h, .3 * mauve * spill);
+  h = screen(h, .24 * wine * spill);
+  h = screen(h, .4 * arc * spill);
+  h = screen(h, .66 * bed * spill);
+  h = screen(h, .72 * body * mix(1., .45, uPhone));
   h = screen(h, .55 * streak);
   h = screen(h, .84 * glow);
   h = screen(h, mix(.8, .95, low) * ridge);
@@ -332,6 +338,7 @@ void main() {
     gl.uniform1f(u.uCharge, charge);
     gl.uniform1f(u.uSpeed, m.speed);
     gl.uniform1f(u.uCool, floatOK ? .55 : .15);   // 8-bit buffers can't hold a slow fade
+    gl.uniform1f(u.uPhone, phone.matches ? 1 : 0);
     gl.uniform2f(u.uMouse, m.x, m.y);
     gl.uniform2f(u.uMouseFrom, m.fromX, m.fromY);
     gl.uniform2f(u.uMouseVel, m.vx, m.vy);
