@@ -1001,19 +1001,19 @@ html.has-dialog { overflow: hidden; }
   .reel__bottom { flex-direction: column; align-items: flex-start; }
 
   /* Phones: the opening fills the screen (opening.js adapts to any frame shape and draws its light as
-     a narrower triangle there), and LUISE grows to run edge to edge like BAPTISTELLA: its letters are
-     2.4867em wide against BAPTISTELLA's 6.0783em, so it is 6.0783 / 2.4867 = 2.4443 times larger. */
+     a soft triangle there), and LUISE, at BAPTISTELLA's size, sits on the left edge: its first letter
+     starts .05em into its box (measured), so -.05em puts the L flush with BAPTISTELLA's B. */
   .opening {
     aspect-ratio: auto;
     height: 100vh;
     height: 100svh;
-    /* still frame if WebGL is missing: the same triangle, apex mid-screen, sides down to LUISE */
+    /* still frame if WebGL is missing: the same soft triangle, apex mid-screen, sides down to the title */
     background:
-      conic-gradient(from 180deg at 50% 48%, #d14526 0 34deg, transparent 40deg 320deg, #d14526 326deg),
+      conic-gradient(from 180deg at 50% 50%, #c9472b 0 18deg, transparent 46deg 314deg, #c9472b 342deg),
       linear-gradient(to top, #bb352a, transparent 20%),
       var(--ink);
   }
-  .opening__title span:first-of-type { font-size: 2.4443em; }
+  .opening__title span:first-of-type { align-self: flex-start; transform: translateX(-.05em); }
 
   /* Each skill on one line, all four the same size: the size is the smaller of the old one and the
      one that fits the language's longest name, plus the .12em nudge of the active line, beside the

@@ -102,11 +102,13 @@ void main() {
   // the field answers the cursor. Above it stays black.
   float side = (p.x - .5) * 2.;
   float dome = .45 + .27 * side * side + (n1 - .5) * .24 + (n2 - .5) * .08 - .16 * exp(-d * d / .05);
-  // On phones (uPhone = 1) the light is a narrower triangle instead: high in the middle, its sides
-  // running straight down to LUISE's cap height at the edges, so the black letters still read
-  float tri = .5 + .3 * abs(side) + (n1 - .5) * .05 - .07 * exp(-d * d / .03);
+  // On phones (uPhone = 1) the light is a narrower, softer triangle instead: high in the middle, its
+  // sides running down to the title at the edges. Its top and sides fade over a long distance (no hard
+  // line where it starts or ends), and it is a little lighter than the desktop mound
+  float tri = .52 + .3 * abs(side) + (n1 - .5) * .08 - .06 * exp(-d * d / .03);
   float moundTop = mix(dome, tri, uPhone);
-  float glow = smoothstep(moundTop - mix(.2, .06, uPhone), moundTop + .03, p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
+  float glow = smoothstep(moundTop - mix(.2, .3, uPhone), moundTop + mix(.03, .08, uPhone), p.y) * mix(.72, 1., max(exp(-side * side * 3.), exp(-d * d / .1)));
+  glow *= mix(1., .82, uPhone);
   float spill = 1. - .8 * uPhone;          // on phones the other reds stay inside the triangle
 
   float h = .05;                          // black
